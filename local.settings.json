@@ -1,0 +1,10 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "",
+        "FUNCTIONS_WORKER_RUNTIME": "java",
+        "test_client": "XX0VmfQAk0awWwoBEQSi",
+        "jwt_secret_key": "KThoWnAuJX7myDKSU1m4mvSsNMMAmFtHHRFcoFEI",
+        "jwt_expire_time": "900"
+    }
+}
