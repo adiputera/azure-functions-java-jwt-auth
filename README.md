@@ -1,5 +1,5 @@
-# Azure Functions Node.js JWT Auth
-This project is an Azure Functions application that implements JWT (JSON Web Token) authentication, built with Node.js.
+# Azure Functions Java JWT Auth
+This project is an Azure Functions application that implements JWT (JSON Web Token) authentication, built with Java.
 
 ## Dependencies
 - [azure-functions-java-library](https://github.com/Azure/azure-functions-java-library)
