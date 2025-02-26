@@ -11,7 +11,7 @@ public class Util {
         // to hide implicit constructor
     }
 
-    public static boolean stringNotEmpty(final String input) {
+    public static boolean stringIsNotEmpty(final String input) {
         return null != input && !input.isEmpty();
     }
 }

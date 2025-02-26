@@ -38,26 +38,26 @@ public class Endpoint {
             final ExecutionContext context) {
         final String authorization = request.getHeaders().get("authorization");
         final Map<String, String> response = new HashMap<>();
-        if (Util.stringNotEmpty(authorization) && authorization.startsWith("Bearer ")) {
+        if (Util.stringIsNotEmpty(authorization) && authorization.startsWith("Bearer ")) {
             final String secret = System.getenv("jwt_secret_key");
             final String token = authorization.split(" ")[1];
             try {
-                Algorithm algorithm = Algorithm.HMAC256(secret);
-                JWTVerifier verifier = JWT.require(algorithm)
+                final Algorithm algorithm = Algorithm.HMAC256(secret);
+                final JWTVerifier verifier = JWT.require(algorithm)
                         .withIssuer("adiputera")
                         .build();
 
-                DecodedJWT decodedJWT = verifier.verify(token);
+                final DecodedJWT decodedJWT = verifier.verify(token);
                 final String clientId = decodedJWT.getSubject();
-                if (Util.stringNotEmpty(clientId) && Util.stringNotEmpty(System.getenv(clientId))) {
-                    response.put("message", "You have access!");
+                if (Util.stringIsNotEmpty(clientId) && Util.stringIsNotEmpty(System.getenv(clientId))) {
+                    response.put("message", "You have access to this endpoint");
                     return request.createResponseBuilder(HttpStatus.OK)
                             .body(response)
                             .header("Content-Type", "application/json")
                             .build();
                 }
             } catch (Exception e) {
-                context.getLogger().log(Level.WARNING, "Invalid JWT: " + e.getMessage());
+                context.getLogger().log(Level.WARNING, String.format("Invalid token: %s", e.getMessage()));
             }
         }
         response.put("error", "Unauthorized");
